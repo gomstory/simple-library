@@ -14,6 +14,12 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "paths": {
+      "simple-core": [
+        "dist/simple-core/simple-core",
+        "dist/simple-core"
+      ]
+    },
     "target": "es2017",
     "module": "es2020",
     "lib": [

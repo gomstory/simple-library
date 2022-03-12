@@ -3,5 +3,140 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "simple-core": {
+      "projectType": "library",
+      "root": "projects/simple-core",
+      "sourceRoot": "projects/simple-core/src",
+      "prefix": "sim",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/simple-core/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/simple-core/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/simple-core/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/simple-core/src/test.ts",
+            "tsConfig": "projects/simple-core/tsconfig.spec.json",
+            "karmaConfig": "projects/simple-core/karma.conf.js"
+          }
+        }
+      }
+    },
+    "simple-demo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "sass"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/simple-demo",
+      "sourceRoot": "projects/simple-demo/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/simple-demo",
+            "index": "projects/simple-demo/src/index.html",
+            "main": "projects/simple-demo/src/main.ts",
+            "polyfills": "projects/simple-demo/src/polyfills.ts",
+            "tsConfig": "projects/simple-demo/tsconfig.app.json",
+            "inlineStyleLanguage": "sass",
+            "assets": [
+              "projects/simple-demo/src/favicon.ico",
+              "projects/simple-demo/src/assets"
+            ],
+            "styles": [
+              "projects/simple-demo/src/styles.sass"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/simple-demo/src/environments/environment.ts",
+                  "with": "projects/simple-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "simple-demo:build:production"
+            },
+            "development": {
+              "browserTarget": "simple-demo:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "simple-demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/simple-demo/src/test.ts",
+            "polyfills": "projects/simple-demo/src/polyfills.ts",
+            "tsConfig": "projects/simple-demo/tsconfig.spec.json",
+            "karmaConfig": "projects/simple-demo/karma.conf.js",
+            "inlineStyleLanguage": "sass",
+            "assets": [
+              "projects/simple-demo/src/favicon.ico",
+              "projects/simple-demo/src/assets"
+            ],
+            "styles": [
+              "projects/simple-demo/src/styles.sass"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "simple-core"
 }
