@@ -7,3 +7,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 2. Cd into workspace folder
 3. Generate Angular library scaffold by running the command `ng generate library simple-core --prefix=sim` (prefix sim-[component-name])
 4. Generate Example project to test local before publishing by running the command `ng generate application simple-demo`
+
+# Build Angular library
+1. Sigle build use `ng build simple-core`
+2. Watch and rebuild all the time use `ng build --watch simple-core` (It will be built everytime when we make change)
+
+
+# Serve Demo Application
+`ng serve simple-demo`
