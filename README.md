@@ -1,4 +1,4 @@
-# SimpleWorkspace
+# Simple Library for Angular
 
 A Simple Angular library includes a library and demo/example
 
